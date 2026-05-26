@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Resultado Final</title>
+
+<style>
+
+body{
+margin:0;
+padding:0;
+font-family:Arial, sans-serif;
+background:#f5e6cc;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.container{
+background:white;
+width:80%;
+max-width:800px;
+padding:50px;
+border-radius:20px;
+box-shadow:0px 0px 15px rgba(0,0,0,0.2);
+text-align:center;
+}
+
+h1{
+color:#5a3e1b;
+font-size:45px;
+}
+
+#resultado{
+font-size:35px;
+font-weight:bold;
+margin-top:30px;
+color:#6b4f2a;
+}
+
+#mensaje{
+font-size:28px;
+margin-top:25px;
+font-weight:bold;
+}
+
+button{
+margin-top:40px;
+padding:18px 35px;
+font-size:20px;
+border:none;
+border-radius:12px;
+background:#d2b48c;
+color:#3d2b1f;
+cursor:pointer;
+font-weight:bold;
+}
+
+button:hover{
+background:#c19a6b;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎉 Quiz Finalizado</h1>
+
+<div id="resultado"></div>
+
+<div id="mensaje"></div>
+
+<button onclick="reiniciar()">
+Reiniciar Quiz
+</button>
+
+</div>
+
+<script>
+
+let puntaje = localStorage.getItem("puntaje");
+
+if(puntaje == null){
+puntaje = 0;
+}
+
+puntaje = parseInt(puntaje);
+
+document.getElementById("resultado").innerHTML =
+"⭐ Puntaje Final: " + puntaje;
+
+if(puntaje >= 80){
+
+document.getElementById("mensaje").innerHTML =
+"🥇 Excelente dominio de las normativas UCE";
+
+}
+else if(puntaje >= 50){
+
+document.getElementById("mensaje").innerHTML =
+"🥈 Buen conocimiento de las normativas";
+
+}
+else{
+
+document.getElementById("mensaje").innerHTML =
+"🥉 Sigue reforzando tus conocimientos";
+
+}
+
+function reiniciar(){
+
+localStorage.setItem("puntaje", 0);
+
+location.reload();
+
+}
+
+</script>
+
+</body>
+</html>
