@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Pregunta 6</title>
+
+<style>
+
+body{
+margin:0;
+padding:0;
+font-family:Arial, sans-serif;
+background:#f5e6cc;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.container{
+background:white;
+width:80%;
+max-width:900px;
+padding:40px;
+border-radius:20px;
+box-shadow:0px 0px 15px rgba(0,0,0,0.2);
+text-align:center;
+}
+
+#score{
+font-size:28px;
+font-weight:bold;
+color:#6b4f2a;
+margin-bottom:25px;
+}
+
+h2{
+color:#5a3e1b;
+margin-bottom:35px;
+line-height:1.5;
+}
+
+button{
+width:100%;
+padding:18px;
+margin:12px 0;
+font-size:18px;
+border:none;
+border-radius:12px;
+background:#d2b48c;
+color:#3d2b1f;
+cursor:pointer;
+transition:0.3s;
+font-weight:bold;
+}
+
+button:hover{
+background:#c19a6b;
+transform:scale(1.02);
+}
+
+#feedback{
+margin-top:25px;
+font-size:24px;
+font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div id="score">⭐ Puntaje: 0</div>
+
+<h2>
+¿Cuál es la finalidad principal de los procedimientos académicos institucionales?
+</h2>
+
+<button onclick="verificar(0)">
+A) Incrementar controles administrativos.
+</button>
+
+<button onclick="verificar(1)">
+B) Garantizar transparencia y debido proceso.
+</button>
+
+<button onclick="verificar(2)">
+C) Reducir solicitudes estudiantiles.
+</button>
+
+<button onclick="verificar(3)">
+D) Limitar la participación académica.
+</button>
+
+<div id="feedback"></div>
+
+</div>
+
+<script>
+
+let puntaje = localStorage.getItem("puntaje");
+
+if(puntaje == null){
+puntaje = 0;
+}
+
+puntaje = parseInt(puntaje);
+
+const correcta = 1;
+
+document.getElementById("score").innerHTML =
+"⭐ Puntaje: " + puntaje;
+
+function verificar(i){
+
+let botones = document.querySelectorAll("button");
+
+botones.forEach(btn=>{
+btn.disabled = true;
+btn.style.opacity = 0.7;
+});
+
+if(i == correcta){
+
+puntaje += 10;
+
+document.getElementById("feedback").innerHTML =
+"✅ Correcto +10 puntos";
+
+document.getElementById("feedback").style.color =
+"green";
+
+}
+else{
+
+puntaje -= 10;
+
+if(puntaje < 0){
+puntaje = 0;
+}
+
+document.getElementById("feedback").innerHTML =
+"❌ Incorrecto -10 puntos";
+
+document.getElementById("feedback").style.color =
+"red";
+
+}
+
+localStorage.setItem("puntaje", puntaje);
+
+document.getElementById("score").innerHTML =
+"⭐ Puntaje: " + puntaje;
+
+}
+
+</script>
+
+</body>
+</html>
